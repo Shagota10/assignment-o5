@@ -20,3 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Coin button clicked!');
     });
 });
+document.addEventListener('DOMContentLoaded', () => 
+    
+
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        heroContent.style.opacity = '0';
+        setTimeout(() => {
+            heroContent.style.transition = 'opacity 1s ease-in-out';
+            heroContent.style.opacity = '1';
+        }, 100);
+    });
