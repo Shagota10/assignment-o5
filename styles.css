@@ -3,6 +3,57 @@
     font-family: Arial, sans-serif;
 }
 
+.navbar {
+    width: 100%;
+    background-color: #38b000;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar-logo {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.navbar-favorites {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2em;
+}
+
+#favorites-count {
+    background-color: white;
+    color: #38b000;
+    padding: 2px 8px;
+    border-radius: 50%;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+
+body {
+    padding-top: 80px;
+}
+
+.icon-heart {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.icon-heart.active {
+    color: #ff6b6b;
+    transform: scale(1.2);
+}
+
 .header {
     display: flex;
     justify-content: space-between;
