@@ -173,3 +173,68 @@ document.addEventListener('DOMContentLoaded', () => {
         historyList.prepend(historyItem);
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const cardSection = document.querySelector('.card-section');
+    const historyList = document.querySelector('.history-list');
+    const clearBtn = document.querySelector('.clear-btn');
+
+
+    const copyCountSpan = document.getElementById('copy-count');
+    let copyCount = 0;
+    let coinBalance = 100;
+    const callCost = 20;
+
+    cardSection.addEventListener('click', (event) => {
+        const card = event.target.closest('.card');
+        if (!card) return;
+
+        const name = card.querySelector('.card-name-en').textContent;
+        const number = card.querySelector('.card-number').textContent;
+
+        if (event.target.closest('.copy-btn')) {
+
+            navigator.clipboard.writeText(number).then(() => {
+
+                alert(`Copied: ${number}`);
+                copyCount++;
+                copyCountSpan.textContent = copyCount;
+            }).catch(err => {
+
+                console.error('Could not copy text: ', err);
+                alert('Failed to copy. Please try again.');
+            });
+        }
+
+        if (event.target.closest('.call-btn')) {
+            if (coinBalance >= callCost) {
+                coinBalance -= callCost;
+                alert(`Calling ${name} at ${number}. Remaining coins: ${coinBalance}`);
+                addHistoryItem(name, number);
+            } else {
+                alert(`You have insufficient coins to make this call. Current balance: ${coinBalance}`);
+            }
+        }
+    });
+
+    clearBtn.addEventListener('click', () => {
+        historyList.innerHTML = '';
+        alert("Call history cleared.");
+    });
+
+    function addHistoryItem(serviceName, serviceNumber) {
+        const now = new Date();
+        const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+        const historyItem = document.createElement('div');
+        historyItem.classList.add('history-item');
+        historyItem.innerHTML = `
+            <div class="history-info">
+                <p>${serviceName}</p>
+                <p class="history-number">${serviceNumber}</p>
+            </div>
+            <p class="history-time">${time}</p>
+        `;
+
+        historyList.prepend(historyItem);
+    }
+});
