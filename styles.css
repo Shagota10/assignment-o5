@@ -39,6 +39,30 @@
     font-weight: bold;
 }
 
+.coin-icon {
+    height: 20px;
+    /* Adjust size of the coin image */
+    margin-right: 5px;
+}
+
+.copy-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s;
+}
+
+.copy-button:hover {
+    background-color: #45a049;
+}
 
 body {
     padding-top: 80px;
