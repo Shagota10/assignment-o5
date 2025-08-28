@@ -238,3 +238,77 @@ document.addEventListener('DOMContentLoaded', () => {
         historyList.prepend(historyItem);
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+
+    const addCallToHistory = (name, number) => {
+        const historyList = document.querySelector('.call-history-list');
+        const now = new Date();
+        const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+        const historyItem = document.createElement('div');
+        historyItem.classList.add('history-item');
+        historyItem.innerHTML = `
+            <span class="history-name">${name}</span>
+            <span class="history-number">${number}</span>
+            <span class="history-time">${time}</span>
+        `;
+        historyList.prepend(historyItem);
+    };
+
+    document.querySelectorAll('.copy-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const numberToCopy = event.currentTarget.dataset.number;
+            navigator.clipboard.writeText(numberToCopy).then(() => {
+
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    button.innerHTML = originalText;
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy number. Please try again or copy manually.');
+            });
+        });
+    });
+    document.querySelectorAll('.call-btn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const numberToCall = event.currentTarget.dataset.number;
+            const cardTitle = event.currentTarget.closest('.card').querySelector('.card-title').textContent;
+
+
+            addCallToHistory(cardTitle, numberToCall);
+
+
+            window.location.href = `tel:${numberToCall}`;
+
+
+        });
+    });
+
+
+    document.querySelectorAll('.favorite-icon').forEach(iconContainer => {
+        iconContainer.addEventListener('click', (event) => {
+            const icon = event.currentTarget.querySelector('i');
+            event.currentTarget.classList.toggle('favorited'); // 
+
+            if (event.currentTarget.classList.contains('favorited')) {
+                icon.classList.remove('far', 'fa-heart');
+                icon.classList.add('fas', 'fa-heart');
+            } else {
+                icon.classList.remove('fas', 'fa-heart');
+                icon.classList.add('far', 'fa-heart');
+            }
+        });
+    });
+
+
+    document.querySelector('.clear-history-btn').addEventListener('click', () => {
+        const historyList = document.querySelector('.call-history-list');
+        if (confirm('Are you sure you want to clear all call history?')) {
+            historyList.innerHTML = '';
+        }
+    });
+
+
+});
