@@ -304,7 +304,7 @@ body {
 
 .heart-icon.liked {
     background: #ff5e6c;
-    /* Liked color */
+
 }
 
 .heart-icon::before,
@@ -329,7 +329,6 @@ body {
     transform-origin: 100% 0%;
 }
 
-/* Hover and active states for better user feedback */
 .heart-icon:hover {
     background: #bbb;
 }
