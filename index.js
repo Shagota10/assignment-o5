@@ -111,6 +111,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 document.addEventListener('DOMContentLoaded', () => {
+    const heartIcon = document.querySelector('.heart-icon');
+
+    if (heartIcon) {
+        heartIcon.addEventListener('click', () => {
+            heartIcon.classList.toggle('liked');
+        });
+    }
+});
+document.addEventListener('DOMContentLoaded', () => {
 
     const cardSection = document.querySelector('.card-section');
     const historyList = document.querySelector('.history-list');

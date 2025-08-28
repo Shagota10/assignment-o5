@@ -283,6 +283,61 @@ body {
     margin-bottom: 10px;
 }
 
+.heart-container {
+    padding: 10px;
+    display: inline-block;
+}
+
+.heart-icon {
+    position: relative;
+    width: 25px;
+    /* Adjust size here */
+    height: 25px;
+    /* Adjust size here */
+    background: #ccc;
+    /* Default color (unliked) */
+    transform: rotate(-45deg);
+    border-radius: 50% 50% 0 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.heart-icon.liked {
+    background: #ff5e6c;
+    /* Liked color */
+}
+
+.heart-icon::before,
+.heart-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: 50%;
+}
+
+.heart-icon::before {
+    left: 50%;
+    transform: rotate(90deg);
+    transform-origin: 0% 100%;
+}
+
+.heart-icon::after {
+    top: 50%;
+    transform: rotate(0deg);
+    transform-origin: 100% 0%;
+}
+
+/* Hover and active states for better user feedback */
+.heart-icon:hover {
+    background: #bbb;
+}
+
+.heart-icon.liked:hover {
+    background: #ff3e4c;
+}
+
 .like-icon {
     color: #bdbdbd;
     cursor: pointer;
