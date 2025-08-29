@@ -291,11 +291,11 @@ body {
 .heart-icon {
     position: relative;
     width: 25px;
-    /* Adjust size here */
+
     height: 25px;
-    /* Adjust size here */
+
     background: #ccc;
-    /* Default color (unliked) */
+
     transform: rotate(-45deg);
     border-radius: 50% 50% 0 0;
     cursor: pointer;
